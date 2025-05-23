@@ -1,4 +1,4 @@
-import { encrypt, decrypt } from '../cryptoUtils';
+import { encrypt, decrypt } from '../utils/cryptoUtils';
 
 function savePassword(site, username, password, masterKey) {
   const entry = {

@@ -2,12 +2,14 @@ import { useState } from 'react';
 import generatePassword from '../utils/generatePassword';
 import { encrypt } from '../utils/cryptoUtils';
 
-function PasswordForm({ masterKey }) {
+function PasswordForm({ masterKey, onAdd }) {
+    // State variables to manage the form inputs
     const [site, setSite] = useState('');
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
 
-
+    // Function to handle form submission
+    // It encrypts the password and saves the entry to local storage
     const handleSubmit = (e) => {
         e.preventDefault();
 
@@ -21,6 +23,9 @@ function PasswordForm({ masterKey }) {
         setSite('');
         setUsername('');
         setPassword('');
+        if (onAdd) {
+            onAdd();
+        }
     };
 
     return (

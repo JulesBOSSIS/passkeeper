@@ -5,9 +5,14 @@ import PasswordForm from './components/PasswordForm';
 import PasswordList from './components/PasswordList';
 
 function App() {
+  // State to manage the master key and refresh state
+  // The master key is used to encrypt/decrypt the passwords
   const [inputKey, setInputKey] = useState('');
   const [masterKey, setMasterKey] = useState('');
+  const [refresh, setRefresh] = useState(false);
 
+  // Function to handle the form submission for the master key
+  // It sets the master key if the input is not empty
   const handleSubmit = (e) => {
     e.preventDefault();
     if (inputKey.trim()) {
@@ -52,8 +57,8 @@ function App() {
     <div className="App">
       <Header />
       <main style={{ maxWidth: '600px', margin: '2rem auto', padding: '1rem' }}>
-        <PasswordForm masterKey={masterKey} />
-        <PasswordList masterKey={masterKey} />
+        <PasswordForm masterKey={masterKey} onAdd={() => setRefresh(!refresh)} />
+        <PasswordList masterKey={masterKey} refresh={refresh} />
       </main>
     </div>
   );
